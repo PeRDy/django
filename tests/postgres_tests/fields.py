@@ -7,7 +7,7 @@ from django.db import models
 try:
     from django.contrib.postgres.fields import (
         ArrayField, BigIntegerRangeField, DateRangeField, DateTimeRangeField,
-        FloatRangeField, HStoreField, IntegerRangeField, JSONField,
+        FloatRangeField, HStoreField, IntegerRangeField, JSONField, NumpyArrayField
     )
 except ImportError:
     class DummyArrayField(models.Field):
@@ -30,3 +30,4 @@ except ImportError:
     HStoreField = models.Field
     IntegerRangeField = models.Field
     JSONField = models.Field
+    NumpyArrayField = models.Field

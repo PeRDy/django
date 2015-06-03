@@ -2,7 +2,7 @@ from django.db import connection, models
 
 from .fields import (
     ArrayField, BigIntegerRangeField, DateRangeField, DateTimeRangeField,
-    FloatRangeField, HStoreField, IntegerRangeField, JSONField,
+    FloatRangeField, HStoreField, IntegerRangeField, JSONField, NumpyArrayField
 )
 
 
@@ -38,6 +38,10 @@ class OtherTypesArrayModel(PostgreSQLModel):
     ips = ArrayField(models.GenericIPAddressField())
     uuids = ArrayField(models.UUIDField())
     decimals = ArrayField(models.DecimalField(max_digits=5, decimal_places=2))
+
+
+class NumpyArrayModel(PostgreSQLModel):
+    field = NumpyArrayField(models.IntegerField())
 
 
 class HStoreModel(PostgreSQLModel):

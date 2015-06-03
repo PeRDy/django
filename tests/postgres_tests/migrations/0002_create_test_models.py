@@ -73,6 +73,17 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
+            name='NumpyArrayModel',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('field', NumpyArrayField(models.IntegerField(), size=None)),
+            ],
+            options={
+                'required_db_vendor': 'postgresql',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='NestedIntegerArrayModel',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),

@@ -14,6 +14,7 @@ from . import PostgreSQLTestCase
 from .models import (
     ArrayFieldSubclass, CharArrayModel, DateTimeArrayModel, IntegerArrayModel,
     NestedIntegerArrayModel, NullableIntegerArrayModel, OtherTypesArrayModel,
+    NumpyArrayModel,
 )
 
 try:
@@ -21,6 +22,12 @@ try:
     from django.contrib.postgres.forms import SimpleArrayField, SplitArrayField
 except ImportError:
     pass
+
+try:
+    from numpy import array, array_equal
+except ImportError:
+    array = list
+    array_equal = lambda x, y: x == y
 
 
 class TestSaveLoad(PostgreSQLTestCase):
@@ -96,6 +103,12 @@ class TestSaveLoad(PostgreSQLTestCase):
         self.assertEqual(instance.ips, loaded.ips)
         self.assertEqual(instance.uuids, loaded.uuids)
         self.assertEqual(instance.decimals, loaded.decimals)
+
+    def test_numpy(self):
+        instance = NumpyArrayModel(field=array([1, 2, 3]))
+        instance.save()
+        loaded = NumpyArrayModel.objects.get()
+        self.assertTrue(array_equal(instance.field, loaded.field))
 
 
 class TestQuerying(PostgreSQLTestCase):
