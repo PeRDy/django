@@ -84,6 +84,15 @@ ArrayField
     If irregular shapes are required, then the underlying field should be made
     nullable and the values padded with ``None``.
 
+NumpyArrayField
+^^^^^^^^^^^^^^^
+
+.. class:: NumpyArrayField(base_field, size=None, **options)
+
+    Stores numpy arrays. Based on a
+    :class:`~django.contrib.postgres.ArrayField`. Represented by a 
+    :class:`~numpy:numpy.ndarray` in Python.
+
 Querying ArrayField
 ^^^^^^^^^^^^^^^^^^^
 
